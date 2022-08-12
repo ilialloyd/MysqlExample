@@ -1,0 +1,209 @@
+*select DISTINCT name, surname 
+from user; - TEkrarlar varsa sadece birini goturur conditiona gore*/
+
+
+* select * 
+from user 
+WHERE age =(select min(age)  from user)- minimum yasi olanmi tapib cixarir ;*/
+
+
+
+*select *
+ from user where name is null - check if name is null(empty)
+*select * from user where name is not null - Select all records from the Customers where the PostalCode column is NOT empty.
+
+--------insert into----------------
+*insert into user (name, surname, age) values ('Sima','Mammadli',27); -insert new record and its values */
+
+
+
+*Update user set name 'Ilham'
+* update `user` set name='test' where id=15; - update and set column
+
+*DELETE FROM table_name WHERE condition; delete from Customers where Country = 'Norway';
+*DELETE from tablename WHERE id IN (1,2,3,...,254);
+*DELETE from tablename WHERE id BETWEEN 1 AND 254;
+*DELETE from tablename WHERE id BETWEEN 1 AND 254 AND id<>10;
+
+------AS-------aliases -takma adlar as keywordu  outputu deyiserek istediyin ferqli formada ede bilersen
+* SELECT CustomerName AS Customer, ContactName AS "Contact Person"
+SELECT CustomerName,
+Address,
+PostalCode 
+as pno
+FROM Customers;
+SELECT name as ad, surname as soyad from `user`; 
+
+
+-------- Distinc----- -- bu başlıqla xüsusi sene lazim olan infonu elde ede bilersen 
+-- meselen umumi neche branchin olduqunu tapaq . yalniz secilmis columnu sene gosterir. ve dublicate olanlari gostermir
+select DISTINCT salary
+FROM employee;
+
+
+-------count-------------- find the count of your employees 
+SELECT count(emp_id)
+from employee;
+*SELECT COUNT(*) 
+from user - umumi listin sayini gosterir */
+
+--------------- limit---------------- first 5 employees in the table -             
+select *
+from employee
+order by salary DESC
+limit 5;
+
+---------ordered by----------
+select *
+from employee
+order by salary (DESC)-tersine;
+
+---------DATE condition---------- find the number of female employees born after 1970
+select COUNT(emp_id)
+from employee
+where sex='F'and birth_day>'1970-01-01';
+
+
+
+---------AVG----average-------- find the average of all employee's salaries
+select avg(salary)
+from employee;
+
+
+----------------SUM-----------sum of all employees salary
+SELECT SUM(salary)
+from employee;
+
+---------- group by -------------- find the total count of employees from branch no 2
+select count(branch_id), branch_id
+from employee
+where branch_id=2
+group by branch_id;
+
+-- find count of employee from each branch
+select count(emp_id), branch_id
+from employee
+group by branch_id;
+
+-----wildcards--------like-----
+* select * from user where name not like '%a' - a ile baslamayani sec
+https://www.w3schools.com/sql/sql_wildcards.asp
+
+-- find any employee born in OCtober
+select *
+from employee
+where birth_day like '____-10%'; -- ____ stands for yrar of born _ = 1 character
+
+
+-------------------UNION---------------------------------
+--------------------------------------find a list of employee and branch names
+select first_name
+from employee
+UNION -- UNION dan yuxari vce asaqida eyni datayype ve eyni qeder setir olmalidir
+select branch_name
+from branch;
+---  find a list of all slient & branch suppliers names
+select client_name as 'client&branch suppliers'
+from client 
+union
+select supplier_name
+from branch_supplier
+
+
+---------INNER-JOIN------- find all branches and the names of their managers
+select employee.emp_id, employee.first_name, branch.branch_name
+from employee
+JOIN branch
+on employee.emp_id = branch.mgr_id;
+
+-----------------------iki branch i merge edib join edib total selllerini tapmaq
+SELECT employee.emp_id, employee.first_name , employee.last_name,  sum(work_with.total_sales)
+FROM employee
+INNER JOIN work_with
+ ON employee.emp_id= work_with.emp_id
+ GROUP BY employee.first_name, employee.last_name;
+
+
+-------LEFT JOIN--------------
+enters all the rows from left side
+select  branch.branch_name , client.client_name
+ from branch
+ LEFT JOIN client
+ ON branch.branch_id = client.branch_id
+ group by branch_name, client.client_name;
+
+
+-------right join ---------------
+will take main all the right sides rows
+
+
+----------NESTED QUERIES--------
+SELECT employee.first_name, employee.last_name, emp_id
+from employee
+where employee.emp_id IN (    ---moterizeden filter olunacaq emp_idlerlere yuxaridaki ad soyad menimsedilir
+   Select work_with.emp_id
+   from work_with
+   where work_with.total_sales>25000
+);
+
+
+---------------NESTED QUERIES---------------------
+-- FInd all clients who are handled by the branch
+-- that Michael Scott manages
+-- remember that you know his ID
+
+SELECT client.client_name
+from client
+where client.branch_id=(
+
+SELECT branch.branch_id
+from branch
+where branch.mgr_id=102
+);
+
+
+
+-------ON delete SET NULL 
+ -------when you delete foreign key from different table foreign keys will set null
+FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE SET NULL
+
+
+------ON DELETE CASCADE
+bu zaman when you delete foreign keyt from different table, the wors will be deleted from current table as well
+FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE CASCADE 
+
+
+
+
+---------------TRIGGERS------------------------
+-- It is a special type of stored procedure that is invoked automatically in response to an event. Each trigger is associated with a table, which is activated on any DML statement such as INSERT, UPDATE, or DELETE.
+it is better to do in mysql command like
+
+DELIMITER $$  --first paste this
+
+CREATE TRIGGER trigger_name BEFORE INSERT        --then this
+ ---or---   (AFTER | BEFORE) (INSERT | UPDATE | DELETE)  
+         ON table_name 
+         FOR EACH ROW BEGIN    
+        --variable declarations    INSERT INTO trigger_test VALUES('added new employee');
+        --trigger code    
+        END;     
+DELIMITER;  -- then this in the end after enter previous one
+
+
+
+---------TRIGGER--------IF-----ELSEIF-------THEN----
+DELIMITER $$ 
+ CREATE
+    TRIGGER trigger_name BEFORE INSERT 
+    ON employee
+    FOR EACH ROW BEGIN
+        if NEW.sex ='M' THEN
+           INSERT INTO trigger_test VALUES('added male employee');
+        ELSEIF NEW.sex='F' THEN
+           INSERT INTO trigger_test VALUES('added new female');
+        ELSE
+           INSERT INTO trigger_test VALUES('added other employee');
+        END IF;
+     END$$
+DELIMITER;
