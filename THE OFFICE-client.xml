@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:html="http://www.w3.org/TR/REC-html40">
+<Worksheet ss:Name="Table1">
+	<Table>
+		<Column ss:Index="2" ss:AutoFitWidth="0" ss:Width="110"/>
+		<Row>
+			<Cell><Data ss:Type="String">client_id</Data></Cell>
+			<Cell><Data ss:Type="String">client_name</Data></Cell>
+			<Cell><Data ss:Type="String">branch_ID</Data></Cell>
+		</Row>
+
+		<Row>
+			<Cell><Data ss:Type="Number">400</Data></Cell>
+			<Cell><Data ss:Type="String">Dunmore Highschool</Data></Cell>
+			<Cell><Data ss:Type="Number">2</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">401</Data></Cell>
+			<Cell><Data ss:Type="String">Lackawana Country</Data></Cell>
+			<Cell><Data ss:Type="Number">2</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">402</Data></Cell>
+			<Cell><Data ss:Type="String">FedEx</Data></Cell>
+			<Cell><Data ss:Type="Number">3</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">403</Data></Cell>
+			<Cell><Data ss:Type="String">John Daly Law, LLC</Data></Cell>
+			<Cell><Data ss:Type="Number">3</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">404</Data></Cell>
+			<Cell><Data ss:Type="String">Scranton Whitepages</Data></Cell>
+			<Cell><Data ss:Type="Number">2</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">405</Data></Cell>
+			<Cell><Data ss:Type="String">Times Newspaper</Data></Cell>
+			<Cell><Data ss:Type="Number">3</Data></Cell>
+		</Row>
+		<Row>
+			<Cell><Data ss:Type="Number">406</Data></Cell>
+			<Cell><Data ss:Type="String">FedEx</Data></Cell>
+			<Cell><Data ss:Type="Number">2</Data></Cell>
+		</Row>	</Table>
+</Worksheet>
+</Workbook>
