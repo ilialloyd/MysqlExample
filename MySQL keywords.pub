@@ -1,4 +1,36 @@
-*select DISTINCT name, surname 
+--------insert into----------------
+*insert into user (name, surname, age) values ('Sima','Mammadli',27); -insert new record and its values */
+
+
+*Update user set name 'Ilham'
+* update `user` set name='test' where id=15; - update and set column
+
+
+
+--------------same code------------------
+select user.*, nationality.name as nationality from user
+left join nationality on user.nationality_id= nationality.nat_id;
+
+select u.*, n.name as nationality from user u
+left join nationality n on u.nationality_id =n.nat_id;
+
+
+select 
+u.*,
+n.name as nationality,
+ c.country as birthpalace
+ from user u
+left join nationality n on u.nationality_id =n.nat_id
+left join nationality c on u.birthpalace_id = c.nat_id;
+
+
+
+
+------ALTER TABLE---------
+ALTER TABLE Customers
+ADD Email varchar(255);
+
+*select -----DISTINCT---------- name, surname 
 from user; - TEkrarlar varsa sadece birini goturur conditiona gore*/
 
 
@@ -12,13 +44,9 @@ WHERE age =(select min(age)  from user)- minimum yasi olanmi tapib cixarir ;*/
  from user where name is null - check if name is null(empty)
 *select * from user where name is not null - Select all records from the Customers where the PostalCode column is NOT empty.
 
---------insert into----------------
-*insert into user (name, surname, age) values ('Sima','Mammadli',27); -insert new record and its values */
 
 
 
-*Update user set name 'Ilham'
-* update `user` set name='test' where id=15; - update and set column
 
 *DELETE FROM table_name WHERE condition; delete from Customers where Country = 'Norway';
 *DELETE from tablename WHERE id IN (1,2,3,...,254);
