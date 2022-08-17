@@ -29,6 +29,8 @@ left join nationality c on u.birthpalace_id = c.nat_id;
 ------ALTER TABLE---------
 ALTER TABLE Customers
 ADD Email varchar(255);
+-----------rename----------
+ALTER TABLE table_name RENAME COLUMN old_column_name TO new_column_name;
 
 *select -----DISTINCT---------- name, surname 
 from user; - TEkrarlar varsa sadece birini goturur conditiona gore*/
