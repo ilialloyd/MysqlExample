@@ -2,6 +2,11 @@
 *insert into user (name, surname, age) values ('Sima','Mammadli',27); -insert new record and its values */
 
 
+
+
+reset table
+truncate schema.tableName
+
 *Update user set name 'Ilham'
 * update `user` set name='test' where id=15; - update and set column
 
@@ -31,6 +36,9 @@ ALTER TABLE Customers
 ADD Email varchar(255);
 -----------rename----------
 ALTER TABLE table_name RENAME COLUMN old_column_name TO new_column_name;
+
+set the Auto_Increment value - it will start from 3000
+Alter TABLE schema.tableName AUTO_INTREMENT=3000
 
 *select -----DISTINCT---------- name, surname 
 from user; - TEkrarlar varsa sadece birini goturur conditiona gore*/
