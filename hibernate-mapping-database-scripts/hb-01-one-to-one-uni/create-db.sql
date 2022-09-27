@@ -1,19 +1,13 @@
--- first check if exist
 DROP SCHEMA IF EXISTS `hb-01-one-to-one-uni`;
 
--- create schema
 CREATE SCHEMA `hb-01-one-to-one-uni`;
 
--- use it
 use `hb-01-one-to-one-uni`;
 
--- disable foreign key first just in case
 SET FOREIGN_KEY_CHECKS = 0;
 
--- check if table exist
 DROP TABLE IF EXISTS `instructor_detail`;
 
--- create table
 CREATE TABLE `instructor_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `youtube_channel` varchar(128) DEFAULT NULL,
@@ -24,11 +18,6 @@ CREATE TABLE `instructor_detail` (
 
 DROP TABLE IF EXISTS `instructor`;
 
--- if you have one main table, in second one you actually can dfefine foreign key when you create table
-
--- KEY `FK_DETAIL_idx` (`instructor_detail_id`) In MySQL KEY is normally a synonym for INDEX.
--- Indexes are used to improve performance. It is almost always a good idea to index foreign keys.
--- https://atech.blog/viaduct/mysql-indexes-primer
 CREATE TABLE `instructor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(45) DEFAULT NULL,
