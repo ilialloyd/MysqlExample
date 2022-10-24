@@ -1,5 +1,8 @@
 mysql root password - *Lenovo2022
 
+to change password
+SET PASSWORD FOR root@localhost='';
+
 --------insert into----------------
 *insert into user (name, surname, age) values ('Sima','Mammadli',27); -insert new record and its values */
 
